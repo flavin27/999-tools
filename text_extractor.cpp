@@ -67,7 +67,7 @@ void read_bin_file(char *fileName) {
         }
         if (ch == 0 && prevChar1 == 165 && prevChar2 == 129) {
             count++;
-            if (count > 2) {
+            if (count > 1) {
                 fprintf(outputFile, "\n\n");
             }
         }

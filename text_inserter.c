@@ -34,7 +34,7 @@ void readTranslatedFile(FILE *translatedFile, FILE *binFile) {
         }
         int position = findStringInBinFile(binFile, buffer);
         if (position != -1) {
-            printf("Found %s at position %04x\n", buffer ,position);
+            printf("Found %s at position %d\n", buffer ,position);
             return;
         }
     }
