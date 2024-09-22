@@ -4,8 +4,16 @@
 #include <string.h>
 
 
+typedef struct {
+    unsigned char n1;
+    unsigned char n2;
+} Pointer;
+
 void readTranslatedFile(FILE *translatedFile, FILE *binFile);
 int findStringInBinFile(FILE *binFile, const char *needle);
+Pointer offsetToPointer(int position);
+
+
 
 int main() {
 
@@ -34,7 +42,9 @@ void readTranslatedFile(FILE *translatedFile, FILE *binFile) {
         }
         int position = findStringInBinFile(binFile, buffer);
         if (position != -1) {
-            printf("Found %s at position %d\n", buffer ,position);
+            printf("Found %s at position %x\n", buffer ,position);
+            Pointer pointer = offsetToPointer(position);
+            printf("Pointer: %02x %02x\n", pointer.n1, pointer.n2);
             return;
         }
     }
@@ -62,5 +72,22 @@ int findStringInBinFile(FILE *binFile, const char *needle) {
         position += sizeof(buffer);
     }
     return -1;
-
 }
+
+Pointer offsetToPointer(int position) {
+    Pointer pointer;
+
+    char hex[5];
+    sprintf(hex, "%04x", position);
+
+    char hex2[3];
+    strncpy(hex2, hex, 2);
+
+    pointer.n1 = strtol(hex+2, NULL, 16) & 0xFF;
+    pointer.n2 = strtol(hex2, NULL, 16) & 0xFF;
+
+
+    return pointer;
+}
+
+
