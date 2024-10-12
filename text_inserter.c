@@ -45,6 +45,10 @@ void readTranslatedFile(FILE *translatedFile, FILE *binFile) {
             printf("Found %s at position %x\n", buffer ,position);
             Pointer pointer = offsetToPointer(position);
             printf("Pointer: %02x %02x\n", pointer.n1, pointer.n2);
+
+            //TODO: sobrescrever o ponteiro no arquivo binário 
+            //TODO: pensar se é possivel gerar um novo binario
+            //fseek(binFile, position, SEEK_SET);
             return;
         }
     }
