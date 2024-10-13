@@ -1,4 +1,4 @@
-# A toolkit for editing bin files from 9 Doors, 9 Persons, 9 Hours!
+# A toolkit for editing binary files from Zero Escape: 9 Doors, 9 Persons, 9 Hours!
 
 ## About
 
